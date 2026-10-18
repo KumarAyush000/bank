@@ -20,17 +20,23 @@ class Bank():
 
 
     def withdraw(self):
-        amount = float(input("Enter the amount to wothdraw: "))
-        
+        try:
+            amount = float(input("Enter the amount to withdraw: "))
+        except ValueError:
+            print("Please enter a valid number.")
+            return
 
         if amount <= 0:
-            print("Amount must be greater than 0.m")
+            print("Amount must be greater than zero.")
+            return
 
         if amount > self.balance:
-            print("Insufficient balance")
-            return 
-        self.balance -= amount
+            print("Insufficient balance.")
+            return
 
+        self.balance -= amount
+        print(f"Successfully withdrew: ₹{amount:.2f}")
+        
     def balance_check(self):
         print(f"Balance : {self.balance}")
 
