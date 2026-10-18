@@ -21,7 +21,7 @@ class Bank():
 
     def withdraw(self):
         amount = float(input("Enter the amount to wothdraw: "))
-        self.balance -= amount
+        
 
         if amount <= 0:
             print("Amount must be greater than 0.m")
@@ -29,21 +29,33 @@ class Bank():
         if amount > self.balance:
             print("Insufficient balance")
             return 
+        self.balance -= amount
 
     def balance_check(self):
         print(f"Balance : {self.balance}")
 
     def pin_check(self):
-        try:
-            pin_enter = int(input("Enter the pin: "))
-        except ValueError:
-            print("PIN contains a number.")
 
-        if pin_enter == self.pin:
-            return True
-        else:
-            print("PIN incorrect")
-            return False
+        times = 3
+
+        while times > 0:
+            try:
+                pin_enter = int(input("Enter the pin: "))
+            except ValueError:
+                print("PIN contains a number.")
+                times-=1
+                continue
+            
+
+            if pin_enter == self.pin:
+                print("Welcome.")
+                return True
+
+            times -= 1
+            print(f"Incorrect pin. Attempts remaining: {times}")
+
+        print("Too many failed attemps.")
+        return False
 
 
 class Main(Bank):
@@ -69,7 +81,7 @@ class Main(Bank):
                 continue
 
         
-            if choice <= 0 or choice > len(option):
+            if choice < 1 or choice > len(options):
                 print("Invalid Choice.")
                 continue
 
