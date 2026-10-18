@@ -36,7 +36,7 @@ class Bank():
 
         self.balance -= amount
         print(f"Successfully withdrew: ₹{amount:.2f}")
-        
+
     def balance_check(self):
         print(f"Balance : {self.balance}")
 
@@ -91,6 +91,10 @@ class Main(Bank):
                 print("Invalid Choice.")
                 continue
 
+            if choice == 4:
+                print("Exiting..")
+                return
+
             if self.pin_check():
                 match choice:
                     case 1:
@@ -102,10 +106,6 @@ class Main(Bank):
                     case 3:
                         self.deposit()
 
-                    case 4:
-                        print("Exiting...")
-                        return
-                
 if __name__ =="__main__":
     bank = Main()
     bank.run()
