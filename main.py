@@ -9,8 +9,11 @@ class Bank():
         self.balance = 10000
 
     def deposit(self):
-        amount = float(input("Enter the amount to deposit: "))
-
+        try:
+            amount = float(input("Enter the amount to deposit: "))
+        except ValueError:
+            print("Amount must be a number")
+            return
         if amount <= 0:
             print("Amount must be greater than zero.")
             return
