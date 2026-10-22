@@ -5,8 +5,8 @@ Mini demo bank
 class Bank():
 
     def __init__(self):
-        self.pin = 123
-        self.balance = 10000
+        self.__pin = 123
+        self.__balance= 10000
 
     def deposit(self):
         try:
@@ -18,7 +18,7 @@ class Bank():
             print("Amount must be greater than zero.")
             return
 
-        self.balance += amount
+        self.__balance += amount
         print(f"Successfully deposited: {amount: 2f}")
 
 
@@ -33,15 +33,15 @@ class Bank():
             print("Amount must be greater than zero.")
             return
 
-        if amount > self.balance:
-            print("Insufficient balance.")
+        if amount > self.__balance:
+            print("Insufficient __balance.")
             return
 
-        self.balance -= amount
+        self.__balance -= amount
         print(f"Successfully withdrew: ₹{amount:.2f}")
 
-    def balance_check(self):
-        print(f"Balance : {self.balance}")
+    def __balance_check(self):
+        print(f"__balance : {self.__balance}")
 
     def pin_check(self):
 
@@ -49,19 +49,19 @@ class Bank():
 
         while times > 0:
             try:
-                pin_enter = int(input("Enter the pin: "))
+                pin_enter = int(input("Enter the __pin: "))
             except ValueError:
-                print("PIN contains a number.")
+                print("__pin contains a number.")
                 times-=1
                 continue
             
 
-            if pin_enter == self.pin:
+            if pin_enter == self.__pin:
                 print("Welcome.")
                 return True
 
             times -= 1
-            print(f"Incorrect pin. Attempts remaining: {times}")
+            print(f"Incorrect __pin. Attempts remaining: {times}")
 
         print("Too many failed attemps.")
         return False
@@ -73,7 +73,7 @@ class Main(Bank):
     def run(self):
         while True:
             options = [
-                "check balance",
+                "check __balance",
                 "withdraw money",
                 "deposit money",
                 "exit"
@@ -98,10 +98,10 @@ class Main(Bank):
                 print("Exiting..")
                 return
 
-            if self.pin_check():
+            if self.__pin_check():
                 match choice:
                     case 1:
-                        self.balance_check()
+                        self.__balance_check()
 
                     case 2:
                         self.withdraw()
